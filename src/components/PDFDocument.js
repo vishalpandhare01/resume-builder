@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   objectiveSection: {
-    marginBottom: 15,
-    padding: 10,
+    marginBottom: 10,
+    padding: 5,
     backgroundColor: '#f9fafb',
     borderRadius: 4,
   },
@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     color: '#1f2937',
-    marginBottom: 5,
+    marginBottom: 3,
   },
   objectiveText: {
-    fontSize: 11,
+    fontSize: 10,
     color: '#1f2937',
-    lineHeight: 1.5,
+    lineHeight: 1.4,
     textAlign: 'justify',
   },
   item: {
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: 'bold',
     color: '#1f2937',
-    marginBottom: 2,
+    marginBottom: 1,
   },
   itemSubheader: {
     fontSize: 10,
     color: '#4b5563',
-    marginBottom: 3,
+    marginBottom: 2,
   },
   itemDescription: {
     fontSize: 9,
@@ -127,10 +127,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const formatDate = (dateString) => {
-  if (!dateString) return '';
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { month: '2-digit', year: 'numeric' }).replace('/', '-');
+const formatDate = (date) => {
+  if (!date) return 'Present';
+  return date;
 };
 
 const PDFDocument = ({ data }) => {
@@ -170,7 +169,7 @@ const PDFDocument = ({ data }) => {
 
         {/* Objective Section */}
         {data.personalInfo.resumeObjective && (
-          <View style={styles.objectiveSection}>
+          <View style={[styles.objectiveSection, { marginTop: 5, marginBottom: 5 }]}>
             <Text style={styles.objectiveTitle}>Professional Summary</Text>
             <Text style={styles.objectiveText}>{data.personalInfo.resumeObjective}</Text>
           </View>
@@ -182,9 +181,11 @@ const PDFDocument = ({ data }) => {
           {data.education.map((edu, index) => (
             <View key={index} style={styles.item}>
               <View style={styles.itemLeft}>
-                <Text style={styles.itemHeader}>{edu.school}</Text>
+                <Text style={styles.itemHeader}>
+                  {edu.school} ({edu.degree})
+                </Text>
                 <Text style={styles.itemSubheader}>
-                  {edu.degree} in {edu.field}
+                  {edu.field}
                 </Text>
               </View>
               <View style={styles.itemRight}>
