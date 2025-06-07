@@ -20,40 +20,57 @@ export default function ResumePreview({ data }) {
       {/* Personal Info */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">{data.personalInfo.name}</h1>
-        <p className="text-gray-600">
-          {data.personalInfo.email} • {data.personalInfo.phone} • {data.personalInfo.location}
-        </p>
-        <div className="flex justify-center space-x-4 mt-2">
-          {data.personalInfo.github && (
-            <a
-              href={data.personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800"
-            >
-              GitHub
-            </a>
-          )}
-          {data.personalInfo.linkedin && (
-            <a
-              href={data.personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800"
-            >
-              LinkedIn
-            </a>
-          )}
-          {data.personalInfo.portfolio && (
-            <a
-              href={data.personalInfo.portfolio}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800"
-            >
-              Portfolio
-            </a>
-          )}
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold text-gray-800">Contact Information</h2>
+          <div className="space-y-2">
+            <p className="text-gray-700">{data.personalInfo.name}</p>
+            <p className="text-gray-700">{data.personalInfo.email}</p>
+            <p className="text-gray-700">{data.personalInfo.phone}</p>
+            <p className="text-gray-700">{data.personalInfo.location}</p>
+            
+            {/* Links in sequence */}
+            <div className="space-y-1">
+              {data.personalInfo.github && (
+                <p className="text-gray-700">
+                  <span className="text-gray-500">1. </span>
+                  <a 
+                    href={data.personalInfo.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    GitHub Profile
+                  </a>
+                </p>
+              )}
+              {data.personalInfo.linkedin && (
+                <p className="text-gray-700">
+                  <span className="text-gray-500">2. </span>
+                  <a 
+                    href={data.personalInfo.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    LinkedIn Profile
+                  </a>
+                </p>
+              )}
+              {data.personalInfo.portfolio && (
+                <p className="text-gray-700">
+                  <span className="text-gray-500">3. </span>
+                  <a 
+                    href={data.personalInfo.portfolio} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    Portfolio Website
+                  </a>
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 

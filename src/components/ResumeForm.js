@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from 'react';
 
+const inputBaseClasses = "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-200 ease-in-out text-base px-4 py-2.5";
+const labelBaseClasses = "block text-sm font-medium text-gray-700 mb-1";
+const errorBaseClasses = "text-red-500 text-sm mt-1 flex items-center gap-1";
+const sectionBaseClasses = "space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-100";
+const buttonBaseClasses = "px-4 py-2 rounded-md transition-all duration-200 ease-in-out font-medium text-sm focus:outline-none focus:ring-2 focus:ring-offset-2";
+
 export default function ResumeForm({ onUpdate, initialData }) {
   const [formData, setFormData] = useState(initialData || {
     personalInfo: {
@@ -241,87 +247,90 @@ export default function ResumeForm({ onUpdate, initialData }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-800">Personal Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className={sectionBaseClasses}>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Personal Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <label className={labelBaseClasses}>Name</label>
             <input
               type="text"
               value={formData.personalInfo.name}
               onChange={(e) => handleInputChange('personalInfo', 'name', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
+              placeholder="John Doe"
             />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            {errors.name && <p className={errorBaseClasses}>⚠️ {errors.name}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className={labelBaseClasses}>Email</label>
             <input
               type="email"
               value={formData.personalInfo.email}
               onChange={(e) => handleInputChange('personalInfo', 'email', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
+              placeholder="john.doe@example.com"
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && <p className={errorBaseClasses}>⚠️ {errors.email}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Phone</label>
+            <label className={labelBaseClasses}>Phone</label>
             <input
               type="tel"
               value={formData.personalInfo.phone}
               onChange={(e) => handleInputChange('personalInfo', 'phone', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
+              placeholder="+1 (555) 123-4567"
             />
-            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+            {errors.phone && <p className={errorBaseClasses}>⚠️ {errors.phone}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Location</label>
+            <label className={labelBaseClasses}>Location</label>
             <input
               type="text"
               value={formData.personalInfo.location}
               onChange={(e) => handleInputChange('personalInfo', 'location', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
+              placeholder="City, Country"
             />
-            {errors.location && <p className="text-red-500 text-sm mt-1">{errors.location}</p>}
+            {errors.location && <p className={errorBaseClasses}>⚠️ {errors.location}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">GitHub URL</label>
+            <label className={labelBaseClasses}>GitHub URL</label>
             <input
               type="url"
               value={formData.personalInfo.github}
               onChange={(e) => handleInputChange('personalInfo', 'github', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
               placeholder="https://github.com/username"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">LinkedIn URL</label>
+            <label className={labelBaseClasses}>LinkedIn URL</label>
             <input
               type="url"
               value={formData.personalInfo.linkedin}
               onChange={(e) => handleInputChange('personalInfo', 'linkedin', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
               placeholder="https://linkedin.com/in/username"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Portfolio URL</label>
+            <label className={labelBaseClasses}>Portfolio URL</label>
             <input
               type="url"
               value={formData.personalInfo.portfolio}
               onChange={(e) => handleInputChange('personalInfo', 'portfolio', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className={inputBaseClasses}
               placeholder="https://your-portfolio.com"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Resume Objective</label>
+          <div className="md:col-span-2">
+            <label className={labelBaseClasses}>Resume Objective</label>
             <textarea
               value={formData.personalInfo.resumeObjective}
               onChange={(e) => handleInputChange('personalInfo', 'resumeObjective', e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              rows="4"
-              placeholder="Write a brief summary of your career goals and aspirations."
+              className={`${inputBaseClasses} min-h-[120px] resize-y`}
+              placeholder="Write a brief summary of your career goals and aspirations..."
             />
           </div>
         </div>
