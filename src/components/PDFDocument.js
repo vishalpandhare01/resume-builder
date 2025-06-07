@@ -129,7 +129,18 @@ const styles = StyleSheet.create({
 
 const formatDate = (date) => {
   if (!date) return 'Present';
-  return date;
+  
+  // If date is already in the format we want, return it
+  if (date.includes('Present')) return date;
+  
+  // Parse the date string
+  const dateObj = new Date(date);
+  
+  // Format as Month Year
+  const month = dateObj.toLocaleString('default', { month: 'long' });
+  const year = dateObj.getFullYear();
+  
+  return `${month} ${year}`;
 };
 
 const PDFDocument = ({ data }) => {
