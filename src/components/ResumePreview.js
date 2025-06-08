@@ -16,82 +16,53 @@ export default function ResumePreview({ data }) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 shadow-lg">
-      {/* Personal Info */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">{data.personalInfo.name}</h1>
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-800">Contact Information</h2>
-          <div className="space-y-2">
-            <p className="text-gray-700">{data.personalInfo.name}</p>
-            <p className="text-gray-700">{data.personalInfo.email}</p>
-            <p className="text-gray-700">{data.personalInfo.phone}</p>
-            <p className="text-gray-700">{data.personalInfo.location}</p>
-            
-            {/* Links in sequence */}
-            <div className="space-y-1">
-              {data.personalInfo.github && (
-                <p className="text-gray-700">
-                  <span className="text-gray-500">1. </span>
-                  <a 
-                    href={data.personalInfo.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    GitHub Profile
-                  </a>
-                </p>
-              )}
-              {data.personalInfo.linkedin && (
-                <p className="text-gray-700">
-                  <span className="text-gray-500">2. </span>
-                  <a 
-                    href={data.personalInfo.linkedin} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    LinkedIn Profile
-                  </a>
-                </p>
-              )}
-              {data.personalInfo.portfolio && (
-                <p className="text-gray-700">
-                  <span className="text-gray-500">3. </span>
-                  <a 
-                    href={data.personalInfo.portfolio} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    Portfolio Website
-                  </a>
-                </p>
-              )}
-            </div>
-          </div>
+    <div className="max-w-[210mm] mx-auto bg-white p-8 shadow-lg">
+      {/* Profile Section */}
+      <div className="flex justify-between mb-8 border-b pb-4">
+        <div className="flex-1">
+          <h1 className="text-2xl font-bold mb-2 text-gray-800">{data.personalInfo.name}</h1>
+          <p className="text-sm text-gray-600 mb-1">{data.personalInfo.email}</p>
+          <p className="text-sm text-gray-600 mb-1">{data.personalInfo.phone}</p>
+          <p className="text-sm text-gray-600">{data.personalInfo.location}</p>
+        </div>
+        <div className="w-[40%] text-right">
+          {data.personalInfo.github && (
+            <p className="text-sm text-gray-600 mb-1">GitHub: {data.personalInfo.github}</p>
+          )}
+          {data.personalInfo.linkedin && (
+            <p className="text-sm text-gray-600 mb-1">LinkedIn: {data.personalInfo.linkedin}</p>
+          )}
+          {data.personalInfo.portfolio && (
+            <p className="text-sm text-gray-600">Portfolio: {data.personalInfo.portfolio}</p>
+          )}
         </div>
       </div>
 
-      {/* Objective */}
+      {/* Objective Section */}
       {data.personalInfo.resumeObjective && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 border-b pb-2">Objective</h2>
-          <p className="text-gray-700 leading-relaxed">{data.personalInfo.resumeObjective}</p>
+        <div className="mb-6 bg-gray-50 p-3 rounded">
+          <h2 className="text-sm font-bold text-gray-800 mb-2">Professional Summary</h2>
+          <p className="text-sm text-gray-700 leading-relaxed">{data.personalInfo.resumeObjective}</p>
         </div>
       )}
 
       {/* Education Section */}
       {data.education.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 border-b pb-2">Education</h2>
+        <div className="mb-6">
+          <h2 className="text-base font-bold mb-3 border-b pb-2 text-gray-800">Education</h2>
           {data.education.map((edu, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="text-xl font-semibold">{edu.school}</h3>
-              <p className="text-gray-600">
-                {edu.degree} in {edu.field} • {edu.startDate} - {edu.endDate}
-              </p>
+            <div key={index} className="flex justify-between mb-3">
+              <div className="w-[70%]">
+                <h3 className="text-sm font-bold text-gray-800">{edu.school}</h3>
+                <p className="text-sm text-gray-600">
+                  {edu.degree} {edu.field}
+                </p>
+              </div>
+              <div className="w-[25%] text-right">
+                <p className="text-sm text-gray-600">
+                  {edu.startDate} - {edu.endDate}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -99,19 +70,24 @@ export default function ResumePreview({ data }) {
 
       {/* Experience Section */}
       {data.experience && data.experience.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 border-b pb-2">Experience</h2>
+        <div className="mb-6">
+          <h2 className="text-base font-bold mb-3 border-b pb-2 text-gray-800">Experience</h2>
           {data.experience.map((exp, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="text-xl font-semibold">{exp.position}</h3>
-              <p className="text-gray-600">
-                {exp.company} • {exp.startDate} - {exp.endDate}
-              </p>
-              <ul className="mt-2 list-disc pl-5 space-y-1">
-                {exp.description.map((bullet, bulletIndex) => (
-                  <li key={bulletIndex} className="text-gray-700">{bullet}</li>
-                ))}
-              </ul>
+            <div key={index} className="flex justify-between mb-3">
+              <div className="w-[70%]">
+                <h3 className="text-sm font-bold text-gray-800">{exp.position}</h3>
+                <p className="text-sm text-gray-600 mb-2">{exp.company}</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  {exp.description.map((bullet, bulletIndex) => (
+                    <li key={bulletIndex} className="text-sm text-gray-600">{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="w-[25%] text-right">
+                <p className="text-sm text-gray-600">
+                  {exp.startDate} - {exp.endDate}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -119,38 +95,41 @@ export default function ResumePreview({ data }) {
 
       {/* Projects Section */}
       {data.projects && data.projects.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 border-b pb-2">Projects</h2>
+        <div className="mb-6">
+          <h2 className="text-base font-bold mb-3 border-b pb-2 text-gray-800">Projects</h2>
           {data.projects.map((project, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="text-xl font-semibold">{project.name}</h3>
-              <p className="text-gray-600">
-                {project.technologies}
-              </p>
-              <p className="mt-2">{project.description}</p>
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800"
-                >
-                  View Project
-                </a>
-              )}
+            <div key={index} className="flex justify-between mb-3">
+              <div className="w-[70%]">
+                <h3 className="text-sm font-bold text-gray-800">{project.name}</h3>
+                <p className="text-sm text-gray-600 mb-2">{project.technologies}</p>
+                <p className="text-sm text-gray-600">{project.description}</p>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:text-blue-800"
+                  >
+                    View Project
+                  </a>
+                )}
+              </div>
+              <div className="w-[25%] text-right">
+                <p className="text-sm text-gray-600">{project.date}</p>
+              </div>
             </div>
           ))}
         </div>
       )}
 
       {/* Skills Section */}
-      {Object.keys(data.skills).some(category => data.skills[category].length > 0) && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 border-b pb-2">Skills</h2>
+      {data.skills && Object.keys(data.skills).length > 0 && (
+        <div className="mb-6">
+          <h2 className="text-base font-bold mb-3 border-b pb-2 text-gray-800">Skills</h2>
           {Object.entries(data.skills).map(([category, skills]) => (
             skills.length > 0 && (
-              <div key={category} className="mb-4">
-                <h3 className="text-lg font-semibold text-gray-700 mb-2">
+              <div key={category} className="mb-3">
+                <h3 className="text-xs font-bold text-gray-800 uppercase mb-2">
                   {category === 'programming' && 'Programming Languages'}
                   {category === 'softSkills' && 'Soft Skills'}
                   {category === 'tools' && 'Tools & Technologies'}
@@ -161,9 +140,9 @@ export default function ResumePreview({ data }) {
                   {skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="bg-gray-100 px-3 py-1 rounded-full text-sm"
+                      className="text-xs text-gray-700"
                     >
-                      {skill}
+                      {skill}{index < skills.length - 1 ? ', ' : ''}
                     </span>
                   ))}
                 </div>
@@ -176,30 +155,31 @@ export default function ResumePreview({ data }) {
       {/* Certifications & Achievements Section */}
       {data.certifications && data.certifications.length > 0 && (
         <div className="mb-6">
-          <h2 className="text-xl font-bold mb-4">Certifications & Achievements</h2>
-          <div className="space-y-4">
-            {data.certifications.map((cert, index) => (
-              <div key={index} className="mb-4">
-                <h3 className="font-semibold">
+          <h2 className="text-base font-bold mb-3 border-b pb-2 text-gray-800">Certifications & Achievements</h2>
+          {data.certifications.map((cert, index) => (
+            <div key={index} className="flex justify-between mb-3">
+              <div className="w-[70%]">
+                <h3 className="text-sm font-bold text-gray-800">
                   {cert.type === 'achievement' ? '🏆 ' : '📜 '}
                   {cert.name}
                 </h3>
-                <p className="text-gray-600">
-                  {cert.issuer} • {cert.date}
-                </p>
-                {cert.type === 'certification' && cert.url && (
+                <p className="text-sm text-gray-600">{cert.issuer}</p>
+                {cert.url && (
                   <a
                     href={cert.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline text-sm"
+                    className="text-xs text-blue-600 hover:text-blue-800"
                   >
                     View Certificate
                   </a>
                 )}
               </div>
-            ))}
-          </div>
+              <div className="w-[25%] text-right">
+                <p className="text-sm text-gray-600">{cert.date}</p>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 

@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   },
   skillCategory: {
     marginBottom: 6,
+    width: '100%',
   },
   skillCategoryTitle: {
     fontSize: 10,
@@ -119,6 +120,14 @@ const styles = StyleSheet.create({
     color: '#1f2937',
     marginLeft: 12,
     lineHeight: 1.4,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '70%',
+  },
+  skillItem: {
+    width: '16.66%',
+    padding: 0,
+    margin: 0,
   },
   url: {
     fontSize: 8,
@@ -193,9 +202,10 @@ const PDFDocument = ({ data }) => {
             <View key={index} style={styles.item}>
               <View style={styles.itemLeft}>
                 <Text style={styles.itemHeader}>
-                  {edu.school} ({edu.degree})
+                  {edu.school} 
                 </Text>
                 <Text style={styles.itemSubheader}>
+                  {edu.degree}
                   {edu.field}
                 </Text>
               </View>
@@ -271,9 +281,14 @@ const PDFDocument = ({ data }) => {
                     {category === 'languages' && 'Languages'}
                     {category === 'other' && 'Other Skills'}
                   </Text>
-                  <Text style={styles.skillList}>
-                    {formatSkills(skills)}
-                  </Text>
+                  <View style={styles.skillList}>
+                    {skills.map((skill, index) => (
+                      <Text key={index} style={styles.skillItem}>
+                        {index > 0 ? ',' : ''}
+                        {capitalizeFirstLetter(skill.trim())}
+                      </Text>
+                    ))}
+                  </View>
                 </View>
               )
             ))}
