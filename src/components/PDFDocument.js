@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     width: '70%',
   },
   skillItem: {
-    width: '16.66%',
+    width: '20.66%',
     padding: 0,
     margin: 0,
   },
